@@ -4,35 +4,31 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val etUsername = findViewById<EditText>(R.id.etUsername)
-        val etPassword = findViewById<EditText>(R.id.etPassword)
-        val tvLoginError = findViewById<TextView>(R.id.tvLoginError)
-
         val sharedPref = getSharedPreferences("users", Context.MODE_PRIVATE)
 
-        findViewById<Button>(R.id.btnLogin).setOnClickListener {
+        btnLogin.setOnClickListener {
             val username = etUsername.text.toString()
             val password = etPassword.text.toString()
             val checkPassword = sharedPref.getString(username, null)
 
-            if (password == "" && username == "") {
-                tvLoginError.text = "Password and username fields are empty."
+            if (password.isEmpty() && username.isEmpty()) {
+                tvLoginError.text = getString(R.string.empty_username_and_password)
             }
-            else if (username == "") {
-                tvLoginError.text = "Username field is empty."
+            else if (username.isEmpty()) {
+                tvLoginError.text = getString(R.string.empty_username)
             }
-            else if (password == "") {
-                tvLoginError.text = "Password field is empty."
+            else if (password.isEmpty()) {
+                tvLoginError.text = getString(R.string.empty_password)
             }
             else if (password == checkPassword) {
                 tvLoginError.text = ""
@@ -40,15 +36,15 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("Username", username)
                 startActivity(intent)
             }
-            else if (checkPassword == null && username != "") {
-                tvLoginError.text = "Invalid username or password."
+            else if (checkPassword == null && username.isNotEmpty()) {
+                tvLoginError.text = getString(R.string.invalid_login)
             }
             else {
-                tvLoginError.text = "Invalid username or password."
+                tvLoginError.text = getString(R.string.invalid_login)
             }
         }
 
-        findViewById<Button>(R.id.btnSignUp).setOnClickListener {
+        btnSignUp.setOnClickListener {
             //Log.d("Lab", "Login Clicked")
             startActivity(Intent(applicationContext, SignUpActivity::class.java))
         }

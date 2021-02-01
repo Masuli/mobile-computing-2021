@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ReminderAppSP</string>
+    <string name="empty_username">Username field is empty.</string>
+    <string name="empty_password">Password field is empty.</string>
+    <string name="empty_username_and_password">Username and password fields are empty.</string>
+    <string name="invalid_login">Invalid username or password.</string>
+    <string name="username_not_available">This username is not available.</string>
+    <string name="password_mismatch">Passwords do not match.</string>
+    <string name="invalid_reminder">Reminder Title or Date is empty.</string>
 </resources>

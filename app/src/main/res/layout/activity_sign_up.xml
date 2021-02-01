@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:hint="ENTER USERNAME"
+        android:padding="8dp"
+        android:background="@drawable/edit_text_border"
         android:textColorHint="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +26,8 @@
         android:layout_marginTop="56dp"
         android:hint="ENTER PASSWORD"
         android:inputType="textPassword"
+        android:padding="8dp"
+        android:background="@drawable/edit_text_border"
         android:textColorHint="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +40,8 @@
         android:layout_marginTop="56dp"
         android:hint="CONFIRM PASSWORD"
         android:inputType="textPassword"
+        android:padding="8dp"
+        android:background="@drawable/edit_text_border"
         android:textColorHint="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,23 +58,22 @@
         app:layout_constraintTop_toBottomOf="@+id/etSignUpConfirmPassword" />
 
     <TextView
-        android:id="@+id/tvUsernameTaken"
+        android:id="@+id/tvUsernameError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:textColor="#E91E63"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignUpSubmit" />
 
     <TextView
-        android:id="@+id/tvPasswordMismatch"
+        android:id="@+id/tvPasswordError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:textColor="#E91E63"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsernameTaken" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUsernameError" />
 </androidx.constraintlayout.widget.ConstraintLayout>

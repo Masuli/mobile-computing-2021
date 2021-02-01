@@ -3,10 +3,8 @@ package com.example.reminderappsp
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,42 +14,36 @@ class SignUpActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("users", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
 
-        val etUsername = findViewById<EditText>(R.id.etSignUpUsername)
-        val etPassword = findViewById<EditText>(R.id.etSignUpPassword)
-        val etConfirmPassword = findViewById<EditText>(R.id.etSignUpConfirmPassword)
-        val tvPasswordError = findViewById<TextView>(R.id.tvPasswordMismatch)
-        val tvUsernameError = findViewById<TextView>(R.id.tvUsernameTaken)
-
-        findViewById<Button>(R.id.btnSignUpSubmit).setOnClickListener {
-            val chosenUsername = etUsername.text.toString()
-            val chosenPassword = etPassword.text.toString()
-            val chosenConfirmPassword = etConfirmPassword.text.toString()
+        btnSignUpSubmit.setOnClickListener {
+            val chosenUsername = etSignUpUsername.text.toString()
+            val chosenPassword = etSignUpPassword.text.toString()
+            val chosenConfirmPassword = etSignUpConfirmPassword.text.toString()
 
             val checkName = sharedPref.getString(chosenUsername, null)
 
             if (checkName != null) {
-                tvUsernameError.text = "This username is not available."
+                tvUsernameError.text = getString(R.string.username_not_available)
             }
-            else if (chosenUsername == "") {
-                tvUsernameError.text = "Username field is empty."
+            else if (chosenUsername.isEmpty()) {
+                tvUsernameError.text = getString(R.string.empty_username)
             }
             else {
                 tvUsernameError.text = ""
             }
 
             if (chosenPassword != chosenConfirmPassword) {
-                tvPasswordError.text = "Passwords do not match."
-                etPassword.setText("")
-                etConfirmPassword.setText("")
+                tvPasswordError.text = getString(R.string.password_mismatch)
+                etSignUpPassword.setText("")
+                etSignUpConfirmPassword.setText("")
             }
-            else if (chosenPassword == "") {
-                tvPasswordError.text = "Password field is empty."
+            else if (chosenPassword.isEmpty()) {
+                tvPasswordError.text = getString(R.string.empty_password)
             }
             else {
                 tvPasswordError.text = ""
             }
 
-            if (chosenPassword == chosenConfirmPassword && checkName == null && chosenUsername != "" && chosenPassword != "") {
+            if (chosenPassword == chosenConfirmPassword && checkName == null && chosenUsername.isNotEmpty() && chosenPassword.isNotEmpty()) {
                 editor.apply {
                     putString(chosenUsername, chosenPassword)
                     apply()
