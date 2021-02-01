@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
                 tvLoginError.text = ""
                 val intent = Intent(applicationContext, ProfileActivity::class.java)
                 intent.putExtra("Username", username)
+                etUsername.setText("")
+                etPassword.setText("")
                 startActivity(intent)
             }
             else if (checkPassword == null && username.isNotEmpty()) {
