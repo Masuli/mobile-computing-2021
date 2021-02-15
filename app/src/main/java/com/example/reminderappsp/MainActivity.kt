@@ -4,9 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             else if (password == checkPassword) {
                 tvLoginError.text = ""
                 val intent = Intent(applicationContext, ProfileActivity::class.java)
-                intent.putExtra("Username", username)
+                intent.putExtra("username", username)
                 etUsername.setText("")
                 etPassword.setText("")
                 startActivity(intent)
@@ -47,7 +44,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnSignUp.setOnClickListener {
-            //Log.d("Lab", "Login Clicked")
             startActivity(Intent(applicationContext, SignUpActivity::class.java))
         }
     }

@@ -47,7 +47,7 @@
         android:id="@+id/rvReminders"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/btnNewReminder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="New Reminder"
+        android:text="New"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.853"
@@ -78,42 +78,25 @@
         app:layout_constraintHorizontal_bias="0.83"
         app:layout_constraintStart_toEndOf="@+id/btnNewReminder" />
 
-    <EditText
-        android:id="@+id/etReminderTitle"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="6dp"
+    <Button
+        android:id="@+id/btnEditReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="44dp"
-        android:hint="Reminder"
-        android:textColorHint="@color/purple_500"
+        android:layout_marginBottom="16dp"
+        android:text="Edit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnNewReminder"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/etReminderDate"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:hint="Date"
-        android:textColorHint="@color/purple_500"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnNewReminder"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/btnNewReminder" />
 
     <TextView
-        android:id="@+id/tvReminderError"
+        android:id="@+id/tvEditError"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="8dp"
         android:textColor="#E91E63"
-        app:layout_constraintBottom_toTopOf="@+id/btnNewReminder"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etReminderTitle" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnEditReminder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvReminders" />
 </androidx.constraintlayout.widget.ConstraintLayout>
