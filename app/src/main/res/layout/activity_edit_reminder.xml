@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:ems="10"
+        android:textSize="20sp"
         android:hint="Location X"
         app:layout_constraintBottom_toTopOf="@+id/etLocationY"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="308dp"
         android:ems="10"
+        android:textSize="20sp"
         android:hint="Location Y"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,17 +36,19 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:ems="10"
+        android:textSize="20sp"
         android:hint="Title"
-        app:layout_constraintBottom_toTopOf="@+id/etDate"
+        app:layout_constraintBottom_toTopOf="@+id/tvDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/etDate"
+    <TextView
+        android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:ems="10"
+        android:textSize="20sp"
         android:hint="Date"
         app:layout_constraintBottom_toTopOf="@+id/etLocationX"
         app:layout_constraintEnd_toEndOf="parent"

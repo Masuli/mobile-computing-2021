@@ -38,11 +38,6 @@ class ReminderAdapter(private val reminders: MutableList<ReminderInfo>) : Recycl
         return reminders.size
     }
 
-    fun addReminder(reminder: ReminderInfo) {
-        reminders.add(reminder)
-        notifyItemInserted(reminders.size - 1)
-    }
-
     fun getCheckedReminders(): MutableList<Int?> {
         val checkedReminders = mutableListOf<Int?>()
         for (reminder in reminders) {

@@ -9,4 +9,5 @@
     <string name="invalid_reminder">Reminder Title or Date is empty.</string>
     <string name="select_reminder">Select a reminder to edit.</string>
     <string name="edit_one_reminder">You can only edit one reminder at a time.</string>
+    <string name="future_reminder">Reminder must be in the future.</string>
 </resources>

@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
+import androidx.work.WorkInfo
+import androidx.work.WorkManager
 import com.example.reminderappsp.db.AppDatabase
 import kotlinx.android.synthetic.main.activity_profile.*
+import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var reminderAdapter: ReminderAdapter
@@ -22,7 +25,15 @@ class ProfileActivity : AppCompatActivity() {
         username = intent.getStringExtra("username")!!
         tvUsername.text = username
 
-        reminderAdapter = ReminderAdapter(reminderDao.getReminderInfos(username))
+        val reminders = reminderDao.getReminderInfos(username)
+        val workManager = WorkManager.getInstance(applicationContext)
+        for (reminder in reminders) {
+            val workInfo = workManager.getWorkInfoById(UUID.fromString(reminder.notification_id)).get()
+            if (workInfo.state != WorkInfo.State.SUCCEEDED) {
+                reminders.remove(reminder)
+            }
+        }
+        reminderAdapter = ReminderAdapter(reminders)
         rvReminders.adapter = reminderAdapter
         rvReminders.layoutManager = LinearLayoutManager(this)
 
@@ -43,7 +54,6 @@ class ProfileActivity : AppCompatActivity() {
             val checkReminders = reminderAdapter.getCheckedReminders()
             val size = checkReminders.size
             if (size == 1) {
-                tvEditError.text = ""
                 val intent = Intent(applicationContext, EditReminderActivity::class.java)
                 intent.putExtra("id", checkReminders[0])
                 startActivity(intent)
@@ -65,8 +75,17 @@ class ProfileActivity : AppCompatActivity() {
         super.onResume()
         val db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "reminderDB").allowMainThreadQueries().build()
         val reminderDao = db.reminderDao()
-        reminderAdapter = ReminderAdapter(reminderDao.getReminderInfos(username))
+        val reminders = reminderDao.getReminderInfos(username)
+        val workManager = WorkManager.getInstance(applicationContext)
+        for (reminder in reminders) {
+            val workInfo = workManager.getWorkInfoById(UUID.fromString(reminder.notification_id)).get()
+            if (workInfo.state != WorkInfo.State.SUCCEEDED) {
+                reminders.remove(reminder)
+            }
+        }
+        reminderAdapter = ReminderAdapter(reminders)
         rvReminders.adapter = reminderAdapter
         rvReminders.layoutManager = LinearLayoutManager(this)
+        tvEditError.text = ""
     }
 }
