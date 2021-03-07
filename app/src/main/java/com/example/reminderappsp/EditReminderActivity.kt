@@ -1,6 +1,7 @@
 package com.example.reminderappsp
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.room.Room
@@ -8,12 +9,13 @@ import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.example.reminderappsp.db.AppDatabase
+import kotlinx.android.synthetic.main.activity_add_reminder.*
 import kotlinx.android.synthetic.main.activity_edit_reminder.btnCancel
 import kotlinx.android.synthetic.main.activity_edit_reminder.btnSubmit
-import kotlinx.android.synthetic.main.activity_edit_reminder.tvDate
-import kotlinx.android.synthetic.main.activity_edit_reminder.etLocationX
 import kotlinx.android.synthetic.main.activity_edit_reminder.etLocationY
 import kotlinx.android.synthetic.main.activity_edit_reminder.etTitle
+import kotlinx.android.synthetic.main.activity_edit_reminder.tvDate
+import kotlinx.android.synthetic.main.activity_edit_reminder.tvLocationX
 import kotlinx.android.synthetic.main.activity_edit_reminder.tvReminderError
 import java.time.LocalDate
 import java.util.*
@@ -31,13 +33,15 @@ class EditReminderActivity : AppCompatActivity() {
 
         etTitle.setText(selectedReminder.title)
         tvDate.text = selectedReminder.date
-        etLocationX.setText(selectedReminder.location_x)
+        tvLocationX.text = selectedReminder.location_x
         etLocationY.setText(selectedReminder.location_y)
 
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val integerChars = '0'..'9'
 
         tvDate.setOnClickListener {
             val datePickerDialog = DatePickerDialog(this, { _, mYear, mMonth, mDay ->
@@ -46,10 +50,26 @@ class EditReminderActivity : AppCompatActivity() {
             datePickerDialog.show()
         }
 
+        tvLocationX.setOnClickListener {
+            val meters = etMeters.text.toString()
+            if (meters.isEmpty()) {
+                tvReminderError.text = "Enter the meter range before selecting location."
+            }
+            else if (!isInteger(meters, integerChars)) {
+                tvReminderError.text = "Meters must be an integer."
+            }
+            else {
+                val intent = Intent(applicationContext, MapsActivity::class.java)
+                intent.putExtra("radius", meters)
+                startActivity(intent)
+            }
+        }
+
         btnSubmit.setOnClickListener {
             selectedReminder.title = etTitle.text.toString()
             selectedReminder.date = tvDate.text.toString()
-            selectedReminder.location_x = etLocationX.text.toString()
+            selectedReminder.meters = etMeters.text.toString()
+            selectedReminder.location_x = tvLocationX.text.toString()
             selectedReminder.location_y = etLocationY.text.toString()
             selectedReminder.creation_time = LocalDate.now().toString()
 
@@ -82,4 +102,6 @@ class EditReminderActivity : AppCompatActivity() {
         WorkManager.getInstance(applicationContext).enqueue(oneTimeWorkRequest)
         return oneTimeWorkRequest.id
     }
+
+    private fun isInteger(input: String, integerChars: CharRange) = input.all { it in integerChars }
 }

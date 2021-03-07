@@ -19,5 +19,6 @@ data class ReminderInfo(
         @ColumnInfo(name="creator_id") var creator_id: String?,
         @ColumnInfo(name="reminder_seen") var reminder_seen: Boolean,
         @ColumnInfo(name="notification_id") var notification_id: String,
+        @ColumnInfo(name="meters") var meters: String?,
         var isChecked: Boolean = false
 )

@@ -19,6 +19,9 @@ interface ReminderDao {
     @Query("SELECT * FROM reminders WHERE uid = :id")
     fun getReminderInfo(id: Int?): ReminderInfo
 
+    @Query("SELECT * FROM reminders WHERE location_x = :locationX")
+    fun getLocationInfo(locationX: String?): ReminderInfo
+
     @Query("SELECT * FROM reminders WHERE creator_id = :id")
     fun getReminderInfos(id: String?): MutableList<ReminderInfo>
 }

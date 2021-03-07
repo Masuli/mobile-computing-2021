@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "759885526300",
+    "project_id": "amplified-bee-306521",
+    "storage_bucket": "amplified-bee-306521.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759885526300:android:9116b74e427dbf4c2e76d9",
+        "android_client_info": {
+          "package_name": "com.example.reminderappsp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759885526300-i0kisssmefbsd14ath7dnjgvnkgfmtio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqdY0C_l_vHEtmyKZawAECXFDLM8B5QJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759885526300-i0kisssmefbsd14ath7dnjgvnkgfmtio.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

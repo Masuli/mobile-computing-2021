@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".EditReminderActivity">
 
-    <EditText
-        android:id="@+id/etLocationX"
+    <TextView
+        android:id="@+id/tvLocationX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -36,8 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:ems="10"
-        android:textSize="20sp"
         android:hint="Title"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/tvDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -48,9 +48,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:ems="10"
+        android:hint="Date (dd.mm.yy)"
         android:textSize="20sp"
-        android:hint="Date"
-        app:layout_constraintBottom_toTopOf="@+id/etLocationX"
+        app:layout_constraintBottom_toTopOf="@+id/etMeters"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -94,4 +94,17 @@
         android:textColor="@color/purple_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etMeters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="Meters"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvLocationX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
